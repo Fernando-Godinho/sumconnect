@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUM Connect - Apresentação Comercial</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration following Apple Design Specs -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#0066cc',
+                            blueHover: '#0071e3',
+                            skyBlue: '#2997ff',
+                            ink: '#1d1d1f',
+                            parchment: '#f5f5f7',
+                            tile1: '#1d1d1f',
+                            tile2: '#272729',
+                            tile3: '#000000',
+                            hairline: '#e0e0e0',
+                            muted: '#7a7a7a'
+                        },
+                        brand: {
+                            blue: '#1D4E9D',
+                            teal: '#178AA5',
+                            cyan: '#2CB7AE'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        'apple-tight': '-0.03em',
+                        'apple-hero': '-0.04em'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #000000;
+            color: #1d1d1f;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Apple-style tight display headlines */
+        .apple-hero-headline {
+            letter-spacing: -0.035em;
+            line-height: 1.05;
+        }
+
+        .apple-tile-headline {
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+        }
+
+        /* Apple single product shadow token */
+        .apple-product-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35);
+        }
+
+        .apple-card-shadow {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        /* Frosted Glass Effect */
+        .frosted-glass-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .frosted-glass-light {
+            background: rgba(245, 245, 247, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Active Button Scale Transition */
+        .apple-btn {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .apple-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Slide Keynote Transition Engine */
+        .slide-pane {
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333336;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0066cc;
+        }
+    </style>
+</head>
+<body class="bg-black text-slate-100 antialiased selection:bg-apple-blue selection:text-white">
+
+    <!-- Apple-style Global Nav Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-11 bg-black/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-4 md:px-8 text-xs font-normal text-slate-300">
+        <div class="flex items-center gap-3">
+            <img src="capa.png" alt="SUM Connect logo" class="h-8 w-auto object-contain" />
+            <span class="hidden sm:inline text-slate-500">|</span>
+            <span class="hidden sm:inline text-slate-400">Apresentação Executiva</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- View Mode Switcher -->
+            <div class="bg-slate-800/80 p-0.5 rounded-full border border-slate-700/60 flex items-center text-[11px]">
+                <button id="btnModeWeb" onclick="switchViewMode('web')" class="px-3 py-1 rounded-full bg-apple-blue text-white font-medium transition-all">
+                    <i class="ph ph-article text-xs mr-1"></i> Artigo
+                </button>
+                <button id="btnModeDeck" onclick="switchViewMode('deck')" class="px-3 py-1 rounded-full text-slate-400 hover:text-white transition-all">
+                    <i class="ph ph-slideshow text-xs mr-1"></i> Keynote Slides
+                </button>
+            </div>
+
+            <button onclick="toggleSound()" id="soundToggle" class="p-1.5 text-slate-400 hover:text-white transition" title="Alternar Som de Navegação">
+                <i class="ph ph-speaker-simple-high text-base"></i>
+            </button>
+
+            <a href="https://wa.me/5551983097389?text=Olá!%20Gostaria%20de%20falar%20com%20o%20time%20da%20SUM%20Connect." target="_blank" class="hidden md:inline-flex items-center px-3 py-1 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-xs font-medium apple-btn shadow-sm">
+                Agendar Reunião
+            </a>
+        </div>
+    </nav>
+
+    <!-- Apple Sub-Nav Sticky Bar -->
+    <header id="subnav" class="sticky top-11 z-40 h-12 frosted-glass-dark border-b border-white/10 flex items-center justify-between px-4 md:px-12 transition-all duration-300">
+        <div class="flex items-center gap-2">
+            <span class="font-semibold text-white text-sm tracking-tight">SUM Connect Platform</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono">v2026.1</span>
+        </div>
+        
+        <div class="hidden lg:flex items-center gap-6 text-xs text-slate-300">
+            <a href="#hero" class="hover:text-apple-skyBlue transition">Visão Geral</a>
+            <a href="#desafio" class="hover:text-apple-skyBlue transition">O Desafio</a>
+            <a href="#solucao" class="hover:text-apple-skyBlue transition">A Solução</a>
+            <a href="#demo" class="hover:text-apple-skyBlue transition">Simulador Live</a>
+            <a href="#roi" class="hover:text-apple-skyBlue transition">Calculadora ROI</a>
+            <a href="#planos" class="hover:text-apple-skyBlue transition">Investimento</a>
+        </div>
+
+        <div>
+            <a href="#planos" class="px-3.5 py-1.5 rounded-full bg-white text-slate-900 hover:bg-slate-200 text-xs font-semibold apple-btn">
+                Ver Condições
+            </a>
+        </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- VIEW MODE 1: APPLE EDITORIAL WEB SHOWCASE (SCROLLABLE EDGE-TO-EDGE TILES) -->
+    <!-- ================================================================= -->
+    <main id="webShowcase" class="w-full">
+
+        <!-- TILE 1: DARK HERO TILE -->
+        <section id="hero" class="min-h-screen bg-black text-white flex flex-col justify-between items-center text-center px-6 py-20 relative overflow-hidden">
+            <!-- Subtle Background Atmosphere -->
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-900/10 via-black to-black pointer-events-none"></div>
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+            <div class="w-full max-w-5xl mx-auto my-auto z-10 flex flex-col items-center">
+                
+                <!-- Logo oficial -->
+                <img src="capa.png" alt="SUM Connect logo" class="w-[250px] max-w-full h-auto object-contain drop-shadow-md" />
+                
+
+                <p class="text-apple-skyBlue font-semibold text-sm uppercase tracking-widest mb-3">Plataforma Omnichannel Dedicada</p>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold apple-hero-headline text-white max-w-4xl tracking-tight mb-6">
+                    Atendimento ao cliente.<br>Elevado ao estado da arte.
+                </h1>
+
+                <p class="text-lg md:text-2xl font-light text-slate-300 max-w-2xl leading-relaxed mb-8">
+                    Centralize WhatsApp, Instagram, Facebook e Webchat em uma infraestrutura VPS privada de altíssima velocidade.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#demo" class="px-7 py-3.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-sm font-semibold apple-btn shadow-lg shadow-blue-600/30">
+                        Experimentar Simulador
+                    </a>
+                    <a href="#roi" class="px-7 py-3.5 rounded-full bg-slate-800 hover:bg-slate-700 text-apple-skyBlue text-sm font-semibold border border-slate-700 apple-btn">
+                        Calcular Economia
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Mockup Display Frame -->
+            <div class="w-full max-w-5xl mt-12 z-10">
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/90 p-2 shadow-2xl apple-product-shadow">
+                    <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/80 text-xs text-slate-500">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                        </div>
+                        <span class="font-mono text-[11px] text-slate-400">vps.sumconnect.com.br — Painel de Controle Unificado</span>
+                        <div class="w-12"></div>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                        <div class="bg-black/60 rounded-xl p-4 border border-slate-800">
+                            <div class="flex items-center gap-3 text-slate-400 mb-2 text-xs">
+                                <i class="ph ph-chats text-lg text-brand-cyan"></i>
+                                <span>Caixa de Entrada Única</span>
+                            </div>
+                            <p class="text-2xl font-bold text-white">100%</p>
+                            <p class="text-xs text-slate-400 mt-1">Dos canais integrados sem dispersão</p>
+                        </div>
+
+                        <div class="bg-black/60 rounded-xl p-4 border border-slate-800">
+                            <div class="flex items-center gap-3 text-slate-400 mb-2 text-xs">
+                                <i class="ph ph-users-three text-lg text-emerald-400"></i>
+                                <span>Usuários Inclusos</span>
+                            </div>
+                            <p class="text-2xl font-bold text-white">03 Equipes</p>
+                            <p class="text-xs text-slate-400 mt-1">Sem custo por mensagem</p>
+                        </div>
+
+                        <div class="bg-black/60 rounded-xl p-4 border border-slate-800">
+                            <div class="flex items-center gap-3 text-slate-400 mb-2 text-xs">
+                                <i class="ph ph-shield-check text-lg text-blue-400"></i>
+                                <span>Infraestrutura VPS</span>
+                            </div>
+                            <p class="text-2xl font-bold text-white">Soberana</p>
+                            <p class="text-xs text-slate-400 mt-1">Dados 100% sob controle da sua empresa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TILE 2: PARCHMENT LIGHT TILE (THE PROBLEM) -->
+        <section id="desafio" class="min-h-screen bg-apple-parchment text-slate-900 py-24 px-6 flex flex-col justify-center items-center">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <p class="text-apple-blue font-semibold text-xs uppercase tracking-widest mb-2">O Problema Atual</p>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-slate-900 mb-6">
+                    Sua equipe está sufocada pela fragmentação de canais.
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Quando o atendimento depende de múltiplos aparelhos celulares, abas abertas e respostas manuais, sua empresa perde vendas e destrói a experiência do cliente.
+                </p>
+            </div>
+
+            <!-- Problem Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200/80 apple-card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-2xl mb-6">
+                            <i class="ph ph-cellphone-slash"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">WhatsApp no Celular Pessoal</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Histórico de conversas preso no smartphone do vendedor. Se o funcionário sai, o histórico de vendas e a carteira de clientes vão embora junto.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 font-mono text-xs text-red-500">
+                        Alto risco LGPD e perda de contatos
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200/80 apple-card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-6">
+                            <i class="ph ph-clock-counter-clockwise"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Demora Excessiva na Resposta</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Sem triagem automática, leads qualificados esperam horas por uma resposta simples. O cliente compra no concorrente que respondeu em 2 minutos.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 font-mono text-xs text-amber-600">
+                        Queda brusca na taxa de conversão
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200/80 apple-card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-800 flex items-center justify-center text-2xl mb-6">
+                            <i class="ph ph-currency-dollar-simple"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Custos SaaS Abusivos</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Plataformas tradicionais cobram por usuário, por conversa e por mensagem. À medida que sua empresa cresce, a fatura torna-se proibitiva.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 font-mono text-xs text-slate-500">
+                        Custo imprevisível mês a mês
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TILE 3: PURE WHITE TILE (THE SOLUTION & PILLARS) -->
+        <section id="solucao" class="min-h-screen bg-white text-slate-900 py-24 px-6 flex flex-col justify-center items-center border-y border-slate-200/60">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <span class="text-apple-blue font-semibold text-xs uppercase tracking-widest mb-2 block">A Arquitetura SUM Connect</span>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-slate-900 mb-6">
+                    Engenharia de software construída para alta performance.
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Sua empresa ganha um ambiente VPS dedicado com o motor Chatwoot empresarial, configurado e mantido integralmente por nossa equipe de especialistas.
+                </p>
+            </div>
+
+            <!-- Pillars Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto w-full">
+                <!-- Pillar 1 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-apple-blue transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl mb-4">
+                        <i class="ph ph-intersect"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Caixa Unificada</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        WhatsApp, Instagram Direct, Facebook Messenger, E-mail e Chat do Site no mesmo painel.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-apple-blue transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center text-xl mb-4">
+                        <i class="ph ph-robot"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Automações & Bots</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Menu de atendimento ativo 24/7. Direcione o cliente para o setor correto instantaneamente.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-apple-blue transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl mb-4">
+                        <i class="ph ph-chart-line-up"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Relatórios & SLAs</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Tempo médio de resposta, tempo de atendimento e volume por atendente em tempo real.
+                    </p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-apple-blue transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl mb-4">
+                        <i class="ph ph-hard-drives"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Servidor Dedicado</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Sua instalação roda isolada em servidor cloud com backup e alta taxa de disponibilidade.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TILE 4: DARK TILE - INTERACTIVE DEMO SIMULATOR -->
+        <section id="demo" class="min-h-screen bg-slate-950 text-white py-24 px-6 flex flex-col justify-center items-center relative">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="text-apple-skyBlue font-semibold text-xs uppercase tracking-widest mb-2 block">Experiência Interativa</span>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-white mb-4">
+                    Experimente o Painel SUM Connect
+                </h2>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto">
+                    Simule a resposta de atendimentos em tempo real e veja a facilidade de alternar entre canais na prática.
+                </p>
+            </div>
+
+            <!-- Interactive Inbox App Widget -->
+            <div class="w-full max-w-5xl bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl apple-product-shadow overflow-hidden grid grid-cols-1 md:grid-cols-12 min-h-[500px]">
+                
+                <!-- Inbox Sidebar -->
+                <div class="md:col-span-4 bg-slate-900/90 border-r border-slate-800 p-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+                            <span class="font-bold text-sm text-white flex items-center gap-2">
+                                <i class="ph ph-tray text-brand-cyan text-lg"></i>
+                                Caixas de Atendimento
+                            </span>
+                            <span class="text-[10px] bg-blue-600/30 text-blue-400 px-2 py-0.5 rounded-full font-mono">3 Ativos</span>
+                        </div>
+
+                        <!-- Channel Filters -->
+                        <div class="space-y-2 mb-4">
+                            <button onclick="setDemoChannel('whatsapp')" id="btnDemoWa" class="demo-chan-btn w-full p-2.5 rounded-xl bg-slate-800 text-white text-xs font-medium flex items-center justify-between border border-blue-500">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="ph ph-whatsapp-logo text-emerald-400 text-lg"></i>
+                                    <span>WhatsApp Vendas</span>
+                                </div>
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            </button>
+
+                            <button onclick="setDemoChannel('instagram')" id="btnDemoIg" class="demo-chan-btn w-full p-2.5 rounded-xl bg-slate-900/60 text-slate-400 text-xs font-medium flex items-center justify-between border border-transparent hover:bg-slate-800">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="ph ph-instagram-logo text-pink-400 text-lg"></i>
+                                    <span>Instagram Direct</span>
+                                </div>
+                                <span class="w-2 h-2 rounded-full bg-pink-400"></span>
+                            </button>
+
+                            <button onclick="setDemoChannel('webchat')" id="btnDemoWeb" class="demo-chan-btn w-full p-2.5 rounded-xl bg-slate-900/60 text-slate-400 text-xs font-medium flex items-center justify-between border border-transparent hover:bg-slate-800">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="ph ph-globe text-brand-cyan text-lg"></i>
+                                    <span>Chat do Site</span>
+                                </div>
+                                <span class="w-2 h-2 rounded-full bg-brand-cyan"></span>
+                            </button>
+                        </div>
+
+                        <!-- Simulated Contact List -->
+                        <div class="space-y-1">
+                            <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-bold flex items-center justify-center text-xs">
+                                    SC
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-semibold text-slate-200 truncate">SUM Connect</span>
+                                        <span class="text-[10px] text-slate-500">12:40</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-400 truncate">Preciso aprovar o contrato VPS...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-800 text-[11px] text-slate-500 flex justify-between items-center">
+                        <span>Atendente: <strong class="text-slate-300">Fernando Godinho</strong></span>
+                        <span class="text-emerald-400">● Online</span>
+                    </div>
+                </div>
+
+                <!-- Active Conversation Window -->
+                <div class="md:col-span-8 bg-black/40 flex flex-col justify-between p-4 min-h-[380px]">
+                    <!-- Chat Header -->
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xs">
+                                SC
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">SUM Connect Tecnologia</h4>
+                                <p id="demoChannelName" class="text-[11px] text-emerald-400 flex items-center gap-1">
+                                    <i class="ph ph-whatsapp-logo"></i> WhatsApp Comercial (+55 51 98900-XXXX)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[10px] text-slate-300 border border-slate-700">Atribuição: Suporte SUM</span>
+                        </div>
+                    </div>
+
+                    <!-- Chat Message Area -->
+                    <div id="demoChatMessages" class="py-4 space-y-3 overflow-y-auto max-h-[260px] text-xs">
+                        <div class="flex justify-start">
+                            <div class="max-w-[80%] bg-slate-800 text-slate-200 rounded-2xl rounded-tl-none p-3 border border-slate-700/60">
+                                <p class="font-semibold text-[10px] text-brand-cyan mb-0.5">Cliente (SUM Connect)</p>
+                                <p>Olá! Gostaríamos de confirmar o envio do contrato de suporte da plataforma Chatwoot VPS.</p>
+                                <span class="text-[9px] text-slate-400 mt-1 block text-right">12:38</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <div class="max-w-[80%] bg-blue-600 text-white rounded-2xl rounded-tr-none p-3 shadow-md">
+                                <p class="font-semibold text-[10px] text-blue-200 mb-0.5">Atendente SUM Connect</p>
+                                <p>Olá! O contrato foi gerado e já está pronto para assinatura digital. Inclui 3 usuários com infraestrutura VPS dedicada.</p>
+                                <span class="text-[9px] text-blue-200 mt-1 block text-right">12:39</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input Bar -->
+                    <div class="pt-3 border-t border-slate-800 flex items-center gap-2">
+                        <input type="text" id="inputDemoMsg" placeholder="Digite uma resposta simulada para testar..." class="flex-1 bg-slate-900 border border-slate-700 rounded-full px-4 py-2.5 text-xs text-white focus:outline-none focus:border-apple-blue transition">
+                        <button onclick="sendDemoMessage()" class="px-4 py-2.5 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white text-xs font-semibold apple-btn flex items-center gap-1.5">
+                            <span>Enviar</span>
+                            <i class="ph ph-paper-plane-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TILE 5: PARCHMENT LIGHT TILE - INTERACTIVE ROI CALCULATOR -->
+        <section id="roi" class="min-h-screen bg-apple-parchment text-slate-900 py-24 px-6 flex flex-col justify-center items-center">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="text-apple-blue font-semibold text-xs uppercase tracking-widest mb-2 block">Matemática Financeira</span>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-slate-900 mb-4">
+                    Calculadora de Economia Comparativa
+                </h2>
+                <p class="text-slate-600 text-base max-w-2xl mx-auto">
+                    Veja o quanto sua empresa economiza substituindo ferramentas tradicionais de SaaS por cadeira pela SUM Connect.
+                </p>
+            </div>
+
+            <!-- Calculator Component Card -->
+            <div class="w-full max-w-4xl bg-white rounded-3xl p-8 md:p-12 border border-slate-200/80 apple-card-shadow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    
+                    <!-- Slider & Controls -->
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="text-sm font-semibold text-slate-800">Número de Atendentes / Usuários</label>
+                                <span id="valUsers" class="text-lg font-bold text-apple-blue bg-blue-50 px-3 py-1 rounded-full border border-blue-200">3 Usuários</span>
+                            </div>
+                            <input type="range" id="inputUsers" min="3" max="30" value="3" oninput="updateROICalculation()" class="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-apple-blue">
+                            <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                <span>3 (Inclusos)</span>
+                                <span>15 Usuários</span>
+                                <span>30 Usuários</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-2 text-xs">
+                            <div class="flex justify-between text-slate-600">
+                                <span>Mensalidade Base SUM Connect:</span>
+                                <span class="font-semibold text-slate-800">R$ 250,00</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600">
+                                <span>Usuários Adicionais (<span id="countExtraUsers">0</span> x R$ 19,90):</span>
+                                <span id="valExtraUsersCost" class="font-semibold text-slate-800">R$ 0,00</span>
+                            </div>
+                            <div class="pt-2 border-t border-slate-200 flex justify-between text-sm font-bold text-slate-900">
+                                <span>Total Mensal SUM Connect:</span>
+                                <span id="valSumTotal" class="text-apple-blue">R$ 250,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Results Box -->
+                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-white relative overflow-hidden flex flex-col justify-between h-full">
+                        <div class="space-y-4">
+                            <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Estimativa Concorrentes (SaaS Tradicional)</span>
+                            <div class="text-3xl font-extrabold text-slate-300 line-through decoration-red-500 decoration-2" id="valCompetitorTotal">
+                                R$ 450,00 /mês
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Baseado na média de mercado de R$ 150/usuário/mês em plataformas SaaS concorrentes.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-700/80">
+                            <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold block mb-1">Economia Anual Estimada</span>
+                            <div id="valAnnualSavings" class="text-4xl font-extrabold text-emerald-400">
+                                R$ 2.400,00
+                            </div>
+                            <p class="text-[11px] text-slate-400 mt-1">
+                                Dinheiro preservado diretamente no caixa da sua empresa.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TILE 6: PURE WHITE TILE - SECURITY & DATA SOVEREIGNTY -->
+        <section class="bg-white text-slate-900 py-24 px-6 border-t border-slate-200">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-apple-blue font-semibold text-xs uppercase tracking-widest mb-2 block">Soberania dos Dados</span>
+                    <h2 class="text-3xl md:text-4xl font-bold apple-tile-headline text-slate-900 mb-6">
+                        Seus clientes. Seus dados. Sem dependência de terceiros.
+                    </h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Diferente das plataformas proprietárias onde seus contatos e conversas ficam retidos no banco de dados de terceiros, com a SUM Connect sua empresa mantém a propriedade total das informações.
+                    </p>
+
+                    <ul class="space-y-3 text-xs text-slate-700 font-medium">
+                        <li class="flex items-center gap-3">
+                            <i class="ph ph-check-circle-fill text-emerald-500 text-lg"></i>
+                            <span>Conformidade total com a Lei Geral de Proteção de Dados (LGPD).</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph ph-check-circle-fill text-emerald-500 text-lg"></i>
+                            <span>Banco de dados isolado com backup automático diário.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph ph-check-circle-fill text-emerald-500 text-lg"></i>
+                            <span>Liberdade para exportação integral dos contatos e históricos a qualquer momento.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-blue-100 text-blue-700 rounded-2xl text-2xl">
+                            <i class="ph ph-shield-checkered"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">Garantia de Disponibilidade</h4>
+                            <p class="text-xs text-slate-500">Infraestrutura em Nuvem de Classe Mundial</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Nossa equipe monitora preventivamente a saúde da sua instância VPS, assegurando atualizações de segurança e mantendo seus canais de vendas operantes sem interrupções.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TILE 7: DARK TILE - OFFER & COMMERCIAL PROPOSAL -->
+        <section id="planos" class="min-h-screen bg-black text-white py-24 px-6 flex flex-col justify-center items-center relative">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <span class="text-apple-skyBlue font-semibold text-xs uppercase tracking-widest mb-2 block">Proposta Comercial Transparente</span>
+                <h2 class="text-3xl md:text-5xl font-bold apple-hero-headline text-white mb-6">
+                    Investimento previsível. Resultados imediatos.
+                </h2>
+                <p class="text-slate-400 text-base max-w-xl mx-auto">
+                    Condição comercial exclusiva para contratação anual com faturamento facilitado.
+                </p>
+            </div>
+
+            <!-- Commercial Card -->
+            <div class="w-full max-w-md bg-gradient-to-b from-slate-900 to-black rounded-3xl p-8 border border-slate-800 apple-product-shadow text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-gradient-to-l from-brand-cyan to-brand-blue text-white text-[10px] uppercase font-bold px-4 py-1.5 rounded-bl-xl tracking-wider">
+                    Plano Recomendado
+                </div>
+
+                <h3 class="text-xl font-bold text-white mb-2">Hospedagem & Suporte VPS</h3>
+                <p class="text-xs text-slate-400 mb-6">Motor Chatwoot Dedicado + Manutenção Preventiva</p>
+
+                <div class="my-6 py-6 border-y border-slate-800">
+                    <span class="text-xs text-slate-400 block mb-1">Valor da Mensalidade</span>
+                    <div class="flex items-baseline justify-center gap-1">
+                        <span class="text-sm font-semibold text-slate-400">R$</span>
+                        <span class="text-5xl font-extrabold text-white tracking-tight">250</span>
+                        <span class="text-slate-400 text-sm">/mês</span>
+                    </div>
+                    <span class="text-[11px] text-emerald-400 mt-2 block font-medium">Com até 03 Usuários Inclusos</span>
+                </div>
+
+                <ul class="text-left text-xs space-y-3 mb-8 text-slate-300">
+                    <li class="flex items-center gap-2.5">
+                        <i class="ph ph-check text-emerald-400 font-bold"></i>
+                        <span>Instalação e Hospedagem em VPS Dedicada</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="ph ph-check text-emerald-400 font-bold"></i>
+                        <span>Atendimento Multi-canal (WhatsApp, IG, Web)</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="ph ph-check text-emerald-400 font-bold"></i>
+                        <span>3 Usuários inclusos (Adicional R$ 19,90/mês)</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="ph ph-check text-emerald-400 font-bold"></i>
+                        <span>Suporte Técnico e Manutenção Inclusos</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="ph ph-check text-emerald-400 font-bold"></i>
+                        <span>Faturamento 7 DDL conforme Ordem de Compra</span>
+                    </li>
+                </ul>
+
+                <a href="https://wa.me/5551983097389?text=Olá!%20Gostaria%20de%20formalizar%20a%20contratação%20da%20plataforma%20SUM%20Connect." target="_blank" class="w-full py-4 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-bold text-sm block apple-btn shadow-lg shadow-blue-600/40">
+                    Solicitar Formalização de Contrato
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="https://wa.me/5551983097389?text=Olá!%20Gostaria%20de%20conversar%20sobre%20a%20SUM%20Connect." target="_blank" aria-label="Falar no WhatsApp" class="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_12px_35px_rgba(16,185,129,0.5)] transition hover:scale-105 hover:bg-emerald-400">
+        <i class="ph ph-whatsapp-logo text-3xl"></i>
+    </a>
+
+    <!-- ================================================================= -->
+    <!-- VIEW MODE 2: FULLSCREEN KEYNOTE SLIDE DECK ENGINE -->
+    <!-- ================================================================= -->
+    <div id="deckMode" class="hidden fixed inset-0 z-40 bg-black text-white flex flex-col justify-between p-6 md:p-12">
+        
+        <!-- Deck Header Status -->
+        <div class="flex justify-between items-center z-10 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-apple-blue animate-pulse"></span>
+                <span class="font-bold text-white tracking-wider uppercase text-[11px]">SUM Connect Keynote</span>
+            </div>
+            <div id="deckSlideCounter" class="font-mono bg-slate-800/80 px-3 py-1 rounded-full text-slate-300">
+                Slide 1 de 5
+            </div>
+        </div>
+
+        <!-- Slide Stage Container -->
+        <div class="relative flex-1 flex items-center justify-center my-6">
+            
+            <!-- SLIDE 1 -->
+            <div id="slide1" class="slide-pane absolute inset-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto opacity-100 scale-100">
+                <p class="text-apple-skyBlue font-semibold text-xs uppercase tracking-widest mb-3">Apresentação Executiva</p>
+                <h1 class="text-4xl md:text-6xl font-bold apple-hero-headline text-white mb-6">
+                    SUM Connect.<br>A Revolução no Atendimento Omnichannel.
+                </h1>
+                <p class="text-lg text-slate-300 font-light max-w-2xl leading-relaxed">
+                    Unificando canais, reduzindo custos operacionais e garantindo soberania total sobre seus dados de clientes.
+                </p>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div id="slide2" class="slide-pane absolute inset-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto opacity-0 scale-95 pointer-events-none">
+                <p class="text-red-400 font-semibold text-xs uppercase tracking-widest mb-3">O Cenário Atual</p>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-white mb-6">
+                    A Fragmentação Destrói Vendas
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left w-full mt-4">
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                        <i class="ph ph-cellphone-slash text-2xl text-red-400 mb-2"></i>
+                        <h4 class="font-bold text-white text-sm">Dados Retidos no Celular</h4>
+                        <p class="text-xs text-slate-400 mt-1">Conversas de vendas trancadas em smartphones pessoais de colaboradores.</p>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                        <i class="ph ph-clock-afternoon text-2xl text-amber-400 mb-2"></i>
+                        <h4 class="font-bold text-white text-sm">Demora no Retorno</h4>
+                        <p class="text-xs text-slate-400 mt-1">Leads esfriam enquanto aguardam direcionamento manual de setor.</p>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                        <i class="ph ph-trend-up text-2xl text-slate-400 mb-2"></i>
+                        <h4 class="font-bold text-white text-sm">SaaS Proibitivo</h4>
+                        <p class="text-xs text-slate-400 mt-1">Cobrança abusiva por usuário adicional e por volume de mensagens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div id="slide3" class="slide-pane absolute inset-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto opacity-0 scale-95 pointer-events-none">
+                <p class="text-emerald-400 font-semibold text-xs uppercase tracking-widest mb-3">A Inovação SUM Connect</p>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-white mb-6">
+                    Sua Própria VPS Dedicada
+                </h2>
+                <p class="text-base text-slate-300 max-w-2xl mb-8">
+                    Infraestrutura isolada na nuvem de alta velocidade, configurada e mantida por nossa equipe com suporte completo.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-200">
+                    <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700">✓ Atendentes Ilimitados Sob Demanda</span>
+                    <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700">✓ 3 Usuários Inclusos na Mensalidade</span>
+                    <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700">✓ Exportação de Dados Livre (LGPD)</span>
+                </div>
+            </div>
+
+            <!-- SLIDE 4 -->
+            <div id="slide4" class="slide-pane absolute inset-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto opacity-0 scale-95 pointer-events-none">
+                <p class="text-apple-skyBlue font-semibold text-xs uppercase tracking-widest mb-3">Visão Financeira</p>
+                <h2 class="text-3xl md:text-5xl font-bold apple-tile-headline text-white mb-6">
+                    Previsibilidade & Economia Real
+                </h2>
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 max-w-xl w-full">
+                    <div class="text-xs text-slate-400 uppercase tracking-widest mb-1">Mensalidade Fixa</div>
+                    <div class="text-5xl font-extrabold text-white mb-2">R$ 250,00 <span class="text-sm font-normal text-slate-400">/mês</span></div>
+                    <p class="text-xs text-emerald-400 mb-6">Economia de mais de R$ 2.400,00 ao ano comparado a concorrentes</p>
+                    <div class="text-left text-xs text-slate-300 space-y-2 border-t border-slate-800 pt-4">
+                        <p>• <strong>Condição de Pagamento:</strong> 7 DDL conforme Ordem de Compra</p>
+                        <p>• <strong>Vigência:</strong> Contrato Anual de 12 Meses</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5 -->
+            <div id="slide5" class="slide-pane absolute inset-0 flex flex-col justify-center items-center text-center max-w-4xl mx-auto opacity-0 scale-95 pointer-events-none">
+                <p class="text-emerald-400 font-semibold text-xs uppercase tracking-widest mb-3">Próximos Passos</p>
+                <h2 class="text-3xl md:text-5xl font-bold apple-hero-headline text-white mb-6">
+                    Pronto para Elevar Seu Atendimento?
+                </h2>
+                <p class="text-slate-300 text-base max-w-xl mb-8">
+                    Entre em contato para validação do ambiente e ativação da sua VPS dedicada.
+                </p>
+                <a href="https://wa.me/5551983097389?text=Olá!%20Quero%20falar%20com%20um%20consultor%20da%20SUM%20Connect." target="_blank" class="px-8 py-4 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-bold text-sm apple-btn shadow-lg shadow-blue-600/40">
+                    Falar com Consultor SUM Connect
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Deck Navigation Controls -->
+        <div class="flex justify-between items-center z-10 pt-4 border-t border-slate-800/80">
+            <button onclick="prevSlide()" class="px-4 py-2 rounded-full bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white apple-btn flex items-center gap-2">
+                <i class="ph ph-arrow-left"></i> Anterior
+            </button>
+
+            <!-- Dot Indicators -->
+            <div class="flex items-center gap-2" id="deckDots">
+                <span class="w-2.5 h-2.5 rounded-full bg-apple-blue cursor-pointer" onclick="goToSlide(1)"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700 cursor-pointer" onclick="goToSlide(2)"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700 cursor-pointer" onclick="goToSlide(3)"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700 cursor-pointer" onclick="goToSlide(4)"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-700 cursor-pointer" onclick="goToSlide(5)"></span>
+            </div>
+
+            <button onclick="nextSlide()" class="px-4 py-2 rounded-full bg-apple-blue hover:bg-apple-blueHover text-xs font-semibold text-white apple-btn flex items-center gap-2">
+                Próximo <i class="ph ph-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Apple-style Fine Print Footer -->
+    <footer id="contato" class="bg-apple-parchment text-slate-600 text-xs py-12 px-6 border-t border-slate-300">
+        <div class="max-w-5xl mx-auto space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-300/80">
+                <div>
+                    <h5 class="font-bold text-slate-900 mb-2">SUM CONNECT TECNOLOGIA</h5>
+                    <p class="leading-relaxed">Soluções corporativas em automação de atendimento, hospedagem VPS dedicada e integração de canais omnichannel.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-slate-900 mb-2">Canais de Contato</h5>
+                    <p>Suporte: comercial@sumconnect.com.br</p>
+                    <p>Atendimento: (51) 98900-XXXX</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-slate-900 mb-2">Conformidade</h5>
+                    <p>LGPD compliant • Servidores com alta disponibilidade • Backup diário automatizado</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+                <p>© 2026 SUM Connect Tecnologia da Informação LTDA. Todos os direitos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Termos de Uso</a>
+                    <a href="#" class="hover:underline">Política de Privacidade</a>
+                    <a href="#" class="hover:underline">SLA de Atendimento</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        let soundEnabled = true;
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        // Audio synthesizer using Web Audio API for soft click effect
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playClickSound() {
+            if (!soundEnabled) return;
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            } catch (e) {}
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundToggle');
+            btn.innerHTML = soundEnabled ? '<i class="ph ph-speaker-simple-high text-base"></i>' : '<i class="ph ph-speaker-simple-slash text-base text-red-400"></i>';
+        }
+
+        function switchViewMode(mode) {
+            playClickSound();
+            const btnWeb = document.getElementById('btnModeWeb');
+            const btnDeck = document.getElementById('btnModeDeck');
+            const webShowcase = document.getElementById('webShowcase');
+            const deckMode = document.getElementById('deckMode');
+            const subnav = document.getElementById('subnav');
+
+            if (mode === 'deck') {
+                btnDeck.className = "px-3 py-1 rounded-full bg-apple-blue text-white font-medium transition-all";
+                btnWeb.className = "px-3 py-1 rounded-full text-slate-400 hover:text-white transition-all";
+                webShowcase.classList.add('hidden');
+                subnav.classList.add('hidden');
+                deckMode.classList.remove('hidden');
+                goToSlide(1);
+            } else {
+                btnWeb.className = "px-3 py-1 rounded-full bg-apple-blue text-white font-medium transition-all";
+                btnDeck.className = "px-3 py-1 rounded-full text-slate-400 hover:text-white transition-all";
+                webShowcase.classList.remove('hidden');
+                subnav.classList.remove('hidden');
+                deckMode.classList.add('hidden');
+            }
+        }
+
+        function goToSlide(slideNum) {
+            playClickSound();
+            if (slideNum < 1 || slideNum > totalSlides) return;
+            
+            // Hide previous slide
+            const prevPane = document.getElementById(`slide${currentSlide}`);
+            if (prevPane) {
+                prevPane.classList.remove('opacity-100', 'scale-100');
+                prevPane.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            }
+
+            currentSlide = slideNum;
+
+            // Show new slide
+            const nextPane = document.getElementById(`slide${currentSlide}`);
+            if (nextPane) {
+                nextPane.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                nextPane.classList.add('opacity-100', 'scale-100');
+            }
+
+            // Update Counter & Dots
+            document.getElementById('deckSlideCounter').textContent = `Slide ${currentSlide} de ${totalSlides}`;
+            const dots = document.getElementById('deckDots').children;
+            for (let i = 0; i < dots.length; i++) {
+                if (i === currentSlide - 1) {
+                    dots[i].className = "w-2.5 h-2.5 rounded-full bg-apple-blue cursor-pointer";
+                } else {
+                    dots[i].className = "w-2.5 h-2.5 rounded-full bg-slate-700 cursor-pointer";
+                }
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) goToSlide(currentSlide - 1);
+        }
+
+        // Keyboard arrow navigation for Keynote deck mode
+        window.addEventListener('keydown', (e) => {
+            const deckMode = document.getElementById('deckMode');
+            if (!deckMode.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+                if (e.key === 'ArrowLeft') prevSlide();
+            }
+        });
+
+        function updateROICalculation() {
+            const users = parseInt(document.getElementById('inputUsers').value, 10);
+            const extraUsers = Math.max(0, users - 3);
+            const extraCost = extraUsers * 19.90;
+            const sumTotal = 250 + extraCost;
+
+            // Competitor estimated at R$ 150/user
+            const competitorTotal = users * 150;
+            const monthlySavings = competitorTotal - sumTotal;
+            const annualSavings = monthlySavings * 12;
+
+            // Update UI
+            document.getElementById('valUsers').textContent = `${users} Usuários`;
+            document.getElementById('countExtraUsers').textContent = extraUsers;
+            document.getElementById('valExtraUsersCost').textContent = `R$ ${extraCost.toFixed(2).replace('.', ',')}`;
+            document.getElementById('valSumTotal').textContent = `R$ ${sumTotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('valCompetitorTotal').textContent = `R$ ${competitorTotal.toFixed(2).replace('.', ',')} /mês`;
+            document.getElementById('valAnnualSavings').textContent = `R$ ${annualSavings.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
+
+        function setDemoChannel(channel) {
+            playClickSound();
+            const btnWa = document.getElementById('btnDemoWa');
+            const btnIg = document.getElementById('btnDemoIg');
+            const btnWeb = document.getElementById('btnDemoWeb');
+            const channelLabel = document.getElementById('demoChannelName');
+
+            // Reset classes
+            [btnWa, btnIg, btnWeb].forEach(btn => {
+                btn.className = "demo-chan-btn w-full p-2.5 rounded-xl bg-slate-900/60 text-slate-400 text-xs font-medium flex items-center justify-between border border-transparent hover:bg-slate-800";
+            });
+
+            if (channel === 'whatsapp') {
+                btnWa.className = "demo-chan-btn w-full p-2.5 rounded-xl bg-slate-800 text-white text-xs font-medium flex items-center justify-between border border-blue-500";
+                channelLabel.innerHTML = '<i class="ph ph-whatsapp-logo"></i> WhatsApp Comercial (+55 51 98900-XXXX)';
+                channelLabel.className = "text-[11px] text-emerald-400 flex items-center gap-1";
+            } else if (channel === 'instagram') {
+                btnIg.className = "demo-chan-btn w-full p-2.5 rounded-xl bg-slate-800 text-white text-xs font-medium flex items-center justify-between border border-blue-500";
+                channelLabel.innerHTML = '<i class="ph ph-instagram-logo"></i> Instagram Direct (@sumconnect)';
+                channelLabel.className = "text-[11px] text-pink-400 flex items-center gap-1";
+            } else if (channel === 'webchat') {
+                btnWeb.className = "demo-chan-btn w-full p-2.5 rounded-xl bg-slate-800 text-white text-xs font-medium flex items-center justify-between border border-blue-500";
+                channelLabel.innerHTML = '<i class="ph ph-globe"></i> Chat do Site (www.sumconnect.com.br)';
+                channelLabel.className = "text-[11px] text-brand-cyan flex items-center gap-1";
+            }
+        }
+
+        function sendDemoMessage() {
+            const input = document.getElementById('inputDemoMsg');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            playClickSound();
+            const container = document.getElementById('demoChatMessages');
+
+            // Append User Message
+            const now = new Date();
+            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+            const msgHtml = `
+                <div class="flex justify-end">
+                    <div class="max-w-[80%] bg-blue-600 text-white rounded-2xl rounded-tr-none p-3 shadow-md">
+                        <p class="font-semibold text-[10px] text-blue-200 mb-0.5">Atendente SUM Connect</p>
+                        <p>${msg}</p>
+                        <span class="text-[9px] text-blue-200 mt-1 block text-right">${timeStr}</span>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', msgHtml);
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // Simulated Auto Response after 1 sec
+            setTimeout(() => {
+                const autoReplyHtml = `
+                    <div class="flex justify-start">
+                        <div class="max-w-[80%] bg-slate-800 text-slate-200 rounded-2xl rounded-tl-none p-3 border border-slate-700/60">
+                            <p class="font-semibold text-[10px] text-brand-cyan mb-0.5">Cliente (SUM Connect)</p>
+                            <p>Perfeito! Mensagem recebida instantaneamente na caixa centralizada.</p>
+                            <span class="text-[9px] text-slate-400 mt-1 block text-right">${timeStr}</span>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', autoReplyHtml);
+                container.scrollTop = container.scrollHeight;
+                playClickSound();
+            }, 1000);
+        }
+
+        // Initialize default state on load
+        window.onload = function() {
+            updateROICalculation();
+        };
+    </script>
+</body>
+</html>
