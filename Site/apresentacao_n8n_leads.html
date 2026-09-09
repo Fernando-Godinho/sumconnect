@@ -256,7 +256,7 @@
             }
         };
 
-        const WEBHOOK_URL = 'https://n8n.sumconnectia.tech/webhook/novoLead';
+        const WEBHOOK_URL = '/api/lead';
 
         function openModal(title, filename) {
             document.getElementById('modal-workflow-title').textContent = title;
@@ -308,7 +308,7 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('Webhook retornou erro');
+                    throw new Error('Proxy retornou erro');
                 }
 
                 const jsonString = JSON.stringify(payload, null, 2);
